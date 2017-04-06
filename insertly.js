@@ -8,7 +8,6 @@ class Insertly {
         this.cookieExpirationTime = expirationTime;
         this.firstTouchAttribution = firstTouch;
         this.params = params;
-        this.debug = debug;
     }
     public start() {
         for (i = 0; i < params.length; i++) {
