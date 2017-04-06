@@ -2,14 +2,15 @@ class Insertly {
     private cookieExpirationTime;
     private firstTouchAttribution;
     private params;
-    
+    private debug = false;
+
     constructor(expirationTime = 30, firstTouch = true, params = ['utm_campaign', 'utm_term', 'utm_medium', 'utm_source', 'utm_content', 'gclid', '_ga']) {
         this.cookieExpirationTime = expirationTime;
         this.firstTouchAttribution = firstTouch;
         this.params = params;
+        this.debug = debug;
     }
-
-    public init() {
+    public start() {
         for (i = 0; i < params.length; i++) {
             if (Insertly.getParameterByName(params[i]) !== undefined) {
                 if (!Insertly.getCookie(params[i])) {
@@ -26,12 +27,15 @@ class Insertly {
             for (a = 0; a < forms.length; a++) {
                 var elem = forms[a];
                 var input = document.createElement('input');
-                input.type = 'hidden';
+                input.type = (this.debug?'text':'hidden');
                 input.name = params[i];
                 input.value = d;
                 elem.appendChild(input);
             }
         }
+    }
+    public debug(status) {
+        this.debug = status;
     }
 
     static getParameterByName(name, url) {
