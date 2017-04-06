@@ -2,7 +2,7 @@ class Insertly {
     private cookieExpirationTime;
     private firstTouchAttribution;
     private params;
-    private debug = false;
+    private debugMode = false;
 
     constructor(expirationTime = 30, firstTouch = true, params = ['utm_campaign', 'utm_term', 'utm_medium', 'utm_source', 'utm_content', 'gclid', '_ga']) {
         this.cookieExpirationTime = expirationTime;
@@ -27,7 +27,7 @@ class Insertly {
             for (a = 0; a < forms.length; a++) {
                 var elem = forms[a];
                 var input = document.createElement('input');
-                input.type = (this.debug?'text':'hidden');
+                input.type = (this.debugMode?'text':'hidden');
                 input.name = params[i];
                 input.value = d;
                 elem.appendChild(input);
@@ -35,7 +35,7 @@ class Insertly {
         }
     }
     public debug(status) {
-        this.debug = status;
+        this.debugMode = status;
     }
 
     static getParameterByName(name, url) {
