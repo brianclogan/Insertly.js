@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>
+    Both forms are essentially the same, the only reason there are two is so you can see that the fields get appended to both of them. They make a POST request to httpbin, an awesome service that dumps all of the information about requests in a JSON format, so you can inspect them!
+</p>
+<form method="POST" action="https://httpbin.org/post">
+    <input type="text" placeholder="test" />
+    <input type="submit" value="SUBMIT" />
+</form>
+<br />
+<form method="POST" action="https://httpbin.org/post">
+    <input type="text" placeholder="test" />
+    <input type="submit" value="SUBMIT" />
+</form>
+<script src="../insertly.js"></script>
+<script>
+    ///YES, I have to set some cookies for you to see it work.. sorry... if you would like to test on your own domain, please do!
+    Insertly.setCookie('utm_campaign', 'CAMPAIGN NAME', 365);
+    Insertly.setCookie('utm_term', 'TERM', 365);
+    Insertly.setCookie('utm_medium', 'MEDIUM', 365);
+    Insertly.setCookie('utm_source', 'SOURCE', 365);
+    Insertly.setCookie('utm_content', 'CONTENT', 365);
+    Insertly.setCookie('gclid', 'GCLID', 365);
+    Insertly.setCookie('_ga', 'GA.1.3.5.24.6.6346', 365);
+
+    Insertly.init();
+</script>
+</body>
+</html>

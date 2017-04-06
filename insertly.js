@@ -1,40 +1,47 @@
 class Insertly {
-    private cookieExpirationTime;
-    private firstTouchAttribution;
-    private params;
-    private debugMode = false;
-
-    constructor(expirationTime = 30, firstTouch = true, params = ['utm_campaign', 'utm_term', 'utm_medium', 'utm_source', 'utm_content', 'gclid', '_ga']) {
-        this.cookieExpirationTime = expirationTime;
-        this.firstTouchAttribution = firstTouch;
-        this.params = params;
+    constructor() {
+        this.cookieExpirationTime = 30;
+        this.firstTouchAttribution = true;
+        this.params = ['utm_campaign', 'utm_term', 'utm_medium', 'utm_source', 'utm_content', 'gclid', '_ga'];
+        this.debugMode = false;
     }
-    public start() {
-        for (i = 0; i < params.length; i++) {
-            if (Insertly.getParameterByName(params[i]) !== undefined) {
-                if (!Insertly.getCookie(params[i])) {
-                    Insertly.setCookie(params[i], Insertly.getParameterByName(params[i]), cookieExpirationTime);
+
+    static init() {
+        this.constructor();
+        for (var i = 0; i < this.params.length; i++) {
+            if (Insertly.getParameterByName(this.params[i]) !== undefined) {
+                if (!Insertly.getCookie(this.params[i])) {
+                    Insertly.setCookie(this.params[i], Insertly.getParameterByName(this.params[i]), this.cookieExpirationTime);
                 }
-                if (!firstTouchAttribution) {
-                    Insertly.setCookie(params[i], Insertly.getParameterByName(params[i]), cookieExpirationTime);
+                if (!this.firstTouchAttribution) {
+                    Insertly.setCookie(this.params[i], Insertly.getParameterByName(this.params[i]), this.cookieExpirationTime);
                 }
             }
         }
-        var d = Insertly.getCookie(params[i]);
+        var d = Insertly.getCookie(this.params[i]);
         if (d != null && d != 'null') {
             var forms = document.getElementsByTagName('form');
             for (a = 0; a < forms.length; a++) {
                 var elem = forms[a];
                 var input = document.createElement('input');
                 input.type = (this.debugMode?'text':'hidden');
-                input.name = params[i];
+                input.name = this.params[i];
                 input.value = d;
                 elem.appendChild(input);
             }
         }
     }
-    public debug(status) {
-        this.debugMode = status;
+
+    static setCookieExipirationTime(minutes) {
+        this.cookieExpirationTime = minutes;
+    }
+
+    static setFirstTouchAttribution(bool) {
+        this.firstTouchAttribution = bool;
+    }
+
+    static setParameters(params) {
+        this.params = params;
     }
 
     static getParameterByName(name, url) {
