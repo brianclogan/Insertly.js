@@ -1,0 +1,17 @@
+{
+  "name": "Insertly.js",
+  "homepage": "https://github.com/Colling-Media/Tracking-Scripts",
+  "authors": [
+    "Brian Logan <brianldj@gmail.com>"
+  ],
+  "description": "This script is a tracking script that allows the creation/population of form fields on all forms on a page.",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
