@@ -1,8 +1,8 @@
 class Insertly {
 
     constructor() {
-        this.cookieExpirationTime = 30;
-        this.firstTouchAttribution = true;
+        this.cookieExpirationTime = 0;
+        this.firstTouchAttribution = false;
         this.params = ['utm_campaign', 'utm_term', 'utm_medium', 'utm_source', 'utm_content', 'gclid', '_ga', 'msclid'];
         this.debugMode = false;
     }
