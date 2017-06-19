@@ -1,0 +1,18 @@
+{
+  "name": "insertly.js",
+  "version": "1.0.0",
+  "description": "This script is a tracking script that allows the creation/population of form fields on all forms on a page. It takes a generic list of tracking parameters, like Google Analytics params, and inserts them into form fields.",
+  "main": "insertly.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Colling-Media/Insertly.js/issues"
+  },
+  "homepage": "https://github.com/Colling-Media/Insertly.js#readme"
+}
