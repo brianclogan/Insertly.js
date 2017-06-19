@@ -10,7 +10,7 @@ _OR_
 
 - Create a hidden form field with the name set to the parameter name.
 
-##Installation
+## Installation
 
 Installing Insertly.js is a breeze. 
 
@@ -36,25 +36,25 @@ yarn install insertly.js
 ```
 
 
-##Setup
+## Setup
 
-###Quick and Dirty
+### Quick and Dirty
 ```
 a = new Insertly();
 a.init();
 ```
 
 
-###Options
+### Options
 
-#####First Touch Attribution
+##### First Touch Attribution
 ```
 a.firstTouchAttribution = true; //default: false
 ```
 
 First Touch Attribution, while set to true, it will only look for the variables ONE TIME per cookie lifetime. If the cookie exists, it won't overwrite it. If set to false, anytime the parameters are in the URL, it will create the cookies.
 
-#####Cookie Expiration Time
+##### Cookie Expiration Time
 ```
 a.cookieExpirationTime = 30; //default: 0
 ```
@@ -63,7 +63,7 @@ Cookie Expiration Time is how many **_days_** you would like the cookies to surv
 
 **NOTE:** setting this to 0 will make the cookies session only, meaning when they close the browser, the cookies delete.
 
-#####Debug Mode
+##### Debug Mode
 ```
 a.debugMode = true; //default: false
 ```
