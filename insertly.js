@@ -1,22 +1,29 @@
 class Insertly {
+
     constructor() {
         this.cookieExpirationTime = 30;
         this.firstTouchAttribution = true;
-        this.params = ['utm_campaign', 'utm_term', 'utm_medium', 'utm_source', 'utm_content', 'gclid', '_ga'];
+        this.params = ['utm_campaign', 'utm_term', 'utm_medium', 'utm_source', 'utm_content', 'gclid', '_ga', 'msclid'];
         this.debugMode = false;
     }
 
     init() {
-        console.log(this.params, this.debugMode);
+        //Cycle through all of the params in the this.params array
         for (let i = 0; i < this.params.length; i++) {
-            if (Insertly.getParameterByName(this.params[i]) !== undefined) {
+            //Detect if the parameter is in the URL
+            if (Insertly.getParameterByName(this.params[i]) !== undefined || Insertly.getParameterByName(this.params[i] !== null || Insertly.getParameterByName(this.params[i] !== ''))) {
+                //A cookie doesn't exist for this parameter
                 if (!Insertly.getCookie(this.params[i])) {
+                    //Set cookie for new parameter
                     Insertly.setCookie(this.params[i], Insertly.getParameterByName(this.params[i]), this.cookieExpirationTime);
                 }
+                //Last touch attribution
                 if (!this.firstTouchAttribution) {
+                    //Create cookie every time if the parameter exists in the URL
                     Insertly.setCookie(this.params[i], Insertly.getParameterByName(this.params[i]), this.cookieExpirationTime);
                 }
             }
+            //Get the value from the cookie
             const d = Insertly.getCookie(this.params[i]);
             if (d !== null && d !== 'null') {
                 const forms = document.getElementsByTagName('form');
@@ -48,7 +55,13 @@ class Insertly {
     }
 
     addParameter(name) {
-        this.params.push(name);
+        if(name === Array) {
+            for(let i = 0; i < name.length; i++) {
+                this.params.push(name[i]);
+            }
+        } else {
+            this.params.push(name);
+        }
     }
 
     removeParameter(name) {
@@ -72,7 +85,7 @@ class Insertly {
     static setCookie(cname, cvalue, exdays) {
         const d = new Date();
         d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-        const expires = "expires=" + d.toUTCString();
+        const expires = (exdays===0?0:"expires=" + d.toUTCString());
         document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
     }
     static getCookie(cname) {

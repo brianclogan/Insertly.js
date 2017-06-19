@@ -29,15 +29,17 @@
 <script src="../insertly.js"></script>
 <script>
     ///YES, I have to set some cookies for you to see it work.. sorry... if you would like to test on your own domain, please do!
-    Insertly.setCookie('utm_campaign', 'CAMPAIGN NAME', 365);
-    Insertly.setCookie('utm_term', 'TERM', 365);
-    Insertly.setCookie('utm_medium', 'MEDIUM', 365);
-    Insertly.setCookie('utm_source', 'SOURCE', 365);
-    Insertly.setCookie('utm_content', 'CONTENT', 365);
-    Insertly.setCookie('gclid', 'GCLID', 365);
-    Insertly.setCookie('_ga', 'GA.1.3.5.24.6.6346', 365);
+    Insertly.setCookie('utm_campaign', 'CAMPAIGN NAME', null);
+    Insertly.setCookie('utm_term', 'TERM', null);
+    Insertly.setCookie('utm_medium', 'MEDIUM', null);
+    Insertly.setCookie('utm_source', 'SOURCE', null);
+    Insertly.setCookie('utm_content', 'CONTENT', null);
+    Insertly.setCookie('gclid', 'GCLID', null);
+    Insertly.setCookie('_ga', 'GA.1.3.5.24.6.6346', null);
+
     const p = new Insertly();
-    p.addParameter('msclid');
+    p.firstTouchAttribution = false;
+    p.cookieExpirationTime = 0;
     p.debugMode = true;
     p.init();
 </script>
