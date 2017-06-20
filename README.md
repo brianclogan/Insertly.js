@@ -64,7 +64,7 @@ a.init();
 
 Cookie Expiration Time is how many **_days_** you would like the cookies to survive. For instance, if you set it to 10, the cookies will expire in 10 days, unless they are re-written by the script.
 
-**NOTE:** setting this to 0 will make the cookies session only, meaning when they close the browser, the cookies delete.
+**NOTE:** Setting this to 0 will make the cookies session only, meaning when they close the browser, the cookies delete.
 
 ##### Debug Mode
 ```

@@ -26,19 +26,24 @@ class Insertly {
             //Get the value from the cookie
             const d = Insertly.getCookie(this.params[i]);
             if (d !== null && d !== 'null') {
+                //As long as the value from the cookie is a true value, let's get all the forms on the page
                 const forms = document.getElementsByTagName('form');
                 for (let a = 0; a < forms.length; a++) {
+                    //Get all the fields from the form
                     const elem = forms[a];
                     const fields = elem.children;
                     let create = true;
+                    //Cycle through all of the fields, looking for one with the class set as the same name as the parameter
                     for(let c = 0; c < fields.length; c++) {
                         if(fields[c].tagName === 'INPUT' || fields[c].tagName === 'SELECT' || fields[c].tagName === 'TEXTAREA') {
                             if((' ' + fields[c].className + ' ').indexOf(' ' + this.params[i] + ' ') > -1) {
+                                //One was found, awesome. We set the value of that field, and disable creation for this parameter
                                 fields[c].value = d;
                                 create = false;
                             }
                         }
                     }
+                    //None were found, we are going to create a hidden element (or visible if debug is on) and append it to the form.
                     if(create) {
                         if(this.debugMode) {
                             elem.appendChild(document.createElement('br'));
@@ -54,6 +59,7 @@ class Insertly {
         }
     }
 
+    //Add a parameter to the parameter list. The name variable can be a string, or array.
     addParameter(name) {
         if(name === Array) {
             for(let i = 0; i < name.length; i++) {
@@ -64,6 +70,7 @@ class Insertly {
         }
     }
 
+    //Remove a parameter from the parameter list. The name must be a string.
     removeParameter(name) {
         const index = this.params.indexOf(name);
         if(index > -1) {
@@ -71,6 +78,7 @@ class Insertly {
         }
     }
 
+    //Get the parameter by name from the url.
     static getParameterByName(name, url) {
         if (!url) {
             url = window.location.href;
@@ -82,12 +90,16 @@ class Insertly {
         if (!results[2]) return '';
         return decodeURIComponent(results[2].replace(/\+/g, " "));
     }
+
+    //Set a cookie
     static setCookie(cname, cvalue, exdays) {
         const d = new Date();
         d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-        const expires = (exdays===0?0:"expires=" + d.toUTCString());
+        const expires = (exdays===0?0:(exdays<0?"expires=Thu, 01 Jan 1970 00:00:01 GMT;":"expires=" + d.toUTCString()));
         document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
     }
+
+    //Read/get a cookie
     static getCookie(cname) {
         const name = cname + "=";
         const decodedCookie = decodeURIComponent(document.cookie);
