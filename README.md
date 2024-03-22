@@ -14,11 +14,6 @@ _OR_
 
 Installing Insertly.js is a breeze. 
 
-CDN:
-```
-<script src="https://js.colling.media/insertly.js"></script>
-```
-
 
 Bower:
 ```
